@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Syntax Sorcerers</title>
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f5f5f5;
+            align-content: center;
+        }
+
+        /* Navigation Bar */
+        ul.navbar {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #3498db;
+            display: flex;
+            justify-content: space-evenly; /* Adjusted to evenly distribute navbar items */
+            align-items: center; /* Vertically center items */
+        }
+
+        li.nav-item {
+            flex-grow: 1;
+        }
+
+        li.nav-item a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        li.nav-item a:hover {
+            background-color: #2980b9;
+        }
+
+        /* Add this style for responsiveness */
+        @media screen and (max-width: 600px) {
+            li.nav-item {
+                flex-grow: 0; /* Adjusted for small screens */
+            }
+
+            li.nav-item a {
+                padding: 15px 10px; /* Adjusted padding for small screens */
+            }
+        }
+
+        /* Container Styles */
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* ... Your existing styles for cards, slideshow, etc. */
+
+        /* Button Hover Effect */
+        .button {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .button:hover {
+            background-color: #2980b9;
+            transform: scale(1.05);
+        }
+
+        form {
+            text-align: center;
+            margin: auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border: 2px solid #3498db;
+            border-radius: 10px;
+            max-width: 400px;
+            width: 80%;
+            margin-top: 50px;
+        }
+
+        h1 {
+            font-size: 30px;
+            color: #3498db;
+            margin-bottom: 20px;
+        }
+
+        input[type="email"],
+        input[type="password"],
+        input[type="button"] {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type="button"] {
+            background-color: #3498db;
+            color: white;
+            cursor: pointer;
+        }
+
+        input[type="button"]:hover {
+            background-color: #2980b9;
+        }
+
+        a {
+            font-size: 18px;
+            color: #3498db;
+            text-decoration: none;
+            display: block;
+            margin-top: 10px;
+        }
+
+
+        form {
+            text-align: center;
+            margin: auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border: 2px solid #3498db;
+            border-radius: 10px;
+            max-width: 400px;
+            width: 80%;
+            margin-top: 50px;
+        }
+
+        h1 {
+            font-size: 30px;
+            color: #3498db;
+            margin-bottom: 20px;
+        }
+
+        input[type="email"],
+        input[type="password"],
+        input[type="button"] {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type="button"] {
+            background-color: #3498db;
+            color: white;
+            cursor: pointer;
+        }
+
+        input[type="button"]:hover {
+            background-color: #2980b9;
+        }
+
+        a {
+            font-size: 18px;
+            color: #3498db;
+            text-decoration: none;
+            display: block;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+<ul class="navbar">
+    <li style="font-style: italic; color:darkblue;" class="nav-item"><a href="{{url_for('index')}}">CyberStalking</a></li>
+    <li class="nav-item"><a href="{{url_for('home')}}">Predict cyber bullying</a></li>
+    <li class="nav-item"><a href="{{url_for('complaint')}}">Complaints</a></li>
+    <li class="nav-item"><a href="{{url_for('contact')}}">Contact</a></li>
+    <li class="nav-item"><a href="{{url_for('about')}}">About</a></li>
+    <li class="nav-item"><a href="{{url_for('login')}}">Login/Register</a></li>
+</ul>
+    <center>
+        <form id="MainForm">
+            <h1>Login</h1>
+            <input type="email" id="login_email" placeholder="Enter username" required/><br/><br/>
+            <input type="password" id="login_password" placeholder="Enter password" minlength="8" required/><br/><br/>
+            <input type="button" id="login-btn" value="Login"/>
+            <label id ="forget-pass-label" type="button" style="cursor:pointer; margin-top:8px; margin-left: 2px; color: blue;"  >Forgot Password</label>
+        <a href="{{url_for('signup')}}">New User</a>
+        </form>
+        <br/>
+        
+
+    </center>
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";
+        import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyD_hcVTrWN7KInr6Jp09UsKzLKKQJ4TqFM",
+            authDomain: "majorproj-auth.firebaseapp.com",
+            projectId: "majorproj-auth",
+            storageBucket: "majorproj-auth.appspot.com",
+            messagingSenderId: "172536099915",
+            appId: "1:172536099915:web:61378140640896602f09ce",
+            measurementId: "G-5C5TX8VXF7"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const auth = getAuth(app);
+
+        let MainForm = document.getElementById('MainForm');
+        let EmailInp = document.getElementById('login_email');
+        let PassInp = document.getElementById('login_password');
+        let ForgotPasswordLabel = document.getElementById('forget-pass-label');
+
+let SignInuser = e => {
+    document.getElementById("login-btn").addEventListener("click", function (e) {
+        e.preventDefault();
+        var email = document.getElementById("login_email").value;
+        var password = document.getElementById("login_password").value;
+
+        signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                console.log(user);
+                alert(user.email + " Login successfully!!!");
+                // document.getElementById('logout').style.display = 'block';
+            })
+            .catch((error) => {
+                const errorMessage = error.message;
+                console.log(errorMessage);
+                alert("Enter valid required credentials");
+            });
+        var user = firebase.auth().currentUser;
+
+        if (user) {
+            // User is signed in, you can safely access user properties
+            console.log(user.uid);
+        } else {
+            // User is not signed in, handle accordingly
+            console.log("User not signed in");
+        }
+    })
+};
+let ForgotPassword = (e) => {
+    e.preventDefault();
+    sendPasswordResetEmail( auth , EmailInp.value)
+        .then(()=>{
+            alert("A Password reset Link has been sent to your email");
+        })
+        .catch((error)=>{
+            console.log(error.code);
+            console.log(error.message);
+        })
+    }
+            MainForm.addEventListener('click', SignInuser);
+            ForgotPasswordLabel.addEventListener('click', ForgotPassword);
+    </script>
+</body>
+</html>

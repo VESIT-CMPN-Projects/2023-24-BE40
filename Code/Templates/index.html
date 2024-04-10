@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+ <link href="path/to/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f5f5f5;
+        }
+
+        /* Navigation Bar */
+        ul.navbar {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #3498db;
+            display: flex;
+            justify-content: space-evenly; /* Adjusted to evenly distribute navbar items */
+            align-items: center; /* Vertically center items */
+        }
+
+        li.nav-item {
+            flex-grow: 1;
+        }
+
+        li.nav-item a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        li.nav-item a:hover {
+            background-color: #2980b9;
+        }
+
+        /* Add this style for responsiveness */
+        @media screen and (max-width: 600px) {
+            li.nav-item {
+                flex-grow: 0; /* Adjusted for small screens */
+            }
+
+            li.nav-item a {
+                padding: 15px 10px; /* Adjusted padding for small screens */
+            }
+        }
+
+        /* Container Styles */
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* ... Your existing styles for cards, slideshow, etc. */
+
+        /* Button Hover Effect */
+        .interactive-button {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .interactive-button:hover {
+            background-color: #2980b9;
+            transform: scale(1.05);
+        }
+        /* Navigation Bar */
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #3498db;
+            display: flex;
+        }
+
+        li {
+            flex-grow: 1;
+        }
+
+        li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        li a:hover {
+            background-color: #2980b9;
+        }
+
+        /* Container Styles */
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Card Styles */
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            background-color: #fff;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: scale(1.02);
+        }
+
+        .card-header {
+            padding: 15px;
+            background-color: #3498db;
+            color: white;
+            border-bottom: 1px solid #ddd;
+            text-align: center; /* Center the text in the header */
+        }
+
+        .card-body {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .category {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .headline {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .description {
+            font-size: 16px;
+            color: #777;
+            flex-grow: 1;
+        }
+
+        .read-more-button {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            align-self: flex-end;
+            margin-top: 10px;
+/*            visibility: hidden;*/
+        }
+        #specific-box{
+          visibility: hidden;
+          display: none;
+        }
+
+        .read-more-button:hover {
+            background-color: #2980b9;
+        }
+
+        /* Slideshow Styles */
+        .slideshow-container {
+            max-width: 100%;
+            position: relative;
+            margin-top: 20px;
+        }
+
+        .mySlides {
+            display: none;
+            width: 100%;
+        }
+
+        img {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        .dot {
+            height: 15px;
+            width: 15px;
+            margin: 0 2px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+
+        .dot.active {
+            background-color: #717171;
+        }
+
+    </style>
+
+    <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Main page</title>
+</head>
+
+<body>
+   <ul class="navbar">
+    <li style="font-style: italic; color:darkblue;" class="nav-item"><a href="{{url_for('index')}}">CyberStalking</a></li>
+    <li class="nav-item"><a href="{{url_for('home')}}">Predict cyber bullying</a></li>
+    <li class="nav-item"><a href="{{url_for('complaint')}}">Complaints</a></li>
+    <li class="nav-item"><a href="{{url_for('contact')}}">Contact</a></li>
+    <li class="nav-item"><a href="{{url_for('about')}}">About</a></li>
+    <li class="nav-item"><a href="{{url_for('login')}}">Login/Register</a></li>
+    </ul>
+
+
+
+    <div class="slideshow-container">
+
+        <div class="mySlides fade">
+          <img src="q3-.png"
+           style="width:100%"/>
+        </div>
+        
+        <div class="mySlides fade">
+          <img src="q2-.png"
+          style="width:100%"/>
+        </div>
+        
+        <div class="mySlides fade">
+          <img src="q1.png"
+          style="width:100%"/>
+        </div>
+        
+        </div>
+        <br>
+        
+        <div style="text-align:center">
+          <span class="dot"></span> 
+          <span class="dot"></span> 
+          <span class="dot"></span> 
+        </div>
+        
+    <div class="container">
+        <div class="card">
+            <div class="card-header">Cyberbullying News</div>
+            <div class="card-body" id="specific-box">
+                <div class="category"></div>
+                <div class="headline"></div>
+                <div class="description"></div>
+                <span class="read-more-button" id="specific-box"></span>
+    <!-- <span class="read-more-button"></span> -->
+            </div>
+        </div>
+        <div id="newsContainer"></div>
+    </div>
+    <br>
+
+    <script>
+        let slideIndex = 0;
+        showSlides();
+        
+        function showSlides() {
+          let i;
+          let slides = document.getElementsByClassName("mySlides");
+          let dots = document.getElementsByClassName("dot");
+          for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";  
+          }
+          slideIndex++;
+          if (slideIndex > slides.length) {slideIndex = 1}    
+          for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+          }
+          slides[slideIndex-1].style.display = "block";  
+          dots[slideIndex-1].className += " active";
+          setTimeout(showSlides, 5000); // Change image every 5 seconds
+        }
+
+
+       const apiUrl = 'https://content.guardianapis.com/search?q=Cyberbullying&api-key=test';
+
+        // Make a Fetch API request
+        fetch(apiUrl)
+          .then(response => {
+            // Check if the request was successful (status code 200)
+            if (!response.ok) {
+              throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            // Parse the JSON response
+            return response.json();
+          })
+          .then(data => {
+            // Extract information from the JSON response
+            const results = data.response.results;
+
+            // Iterate over each result to extract headline, category, description, and URL
+            results.forEach(result => {
+              const headline = result.webTitle;
+              const category = result.sectionName;
+              const description = result.webPublicationDate;
+              const newsUrl = result.webUrl; // Added for the news URL
+
+              // Format the timestamp to a simpler view (date only)
+              const formattedDate = new Date(description).toLocaleDateString();
+
+
+              // Log or use the extracted information as needed
+              console.log('Headline:', headline);
+              console.log('Category:', category);
+              console.log('Description:', formattedDate);
+              console.log('News URL:', newsUrl);
+
+              // Assuming you want to create HTML elements dynamically
+              // Replace this part with your logic to create HTML elements
+              createCardElement(category, headline, formattedDate, newsUrl);
+            });
+          })
+          .catch(error => {
+            console.error('Error fetching data:', error);
+          });
+
+        // Sample function to create a card element dynamically
+        function createCardElement(category, headline, description, newsUrl) {
+          const card = document.createElement('div');
+          card.className = 'card';
+
+          const cardBody = document.createElement('div');
+          cardBody.className = 'card-body';
+
+          const categoryElement = document.createElement('div');
+          categoryElement.className = 'category';
+          categoryElement.textContent = category;
+
+          const headlineElement = document.createElement('div');
+          headlineElement.className = 'headline';
+          headlineElement.textContent = headline;
+
+          const descriptionElement = document.createElement('div');
+          descriptionElement.className = 'description';
+          descriptionElement.textContent = description;
+
+          const readMoreButton = document.createElement('button');
+          readMoreButton.className = 'read-more-button';
+          readMoreButton.textContent = 'Read More';
+          // Open the news URL in a new tab when the button is clicked
+          readMoreButton.addEventListener('click', () => {
+            window.open(newsUrl, '_blank');
+          });
+
+          cardBody.appendChild(categoryElement);
+          cardBody.appendChild(headlineElement);
+          cardBody.appendChild(descriptionElement);
+          cardBody.appendChild(readMoreButton);
+
+          card.appendChild(cardBody);
+
+          // Assuming there's a container element in your HTML with the id 'newsContainer'
+          document.getElementById('newsContainer').appendChild(card);
+        }
+        </script>
+    
+</body>
+
+</html>
